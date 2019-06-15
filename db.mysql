@@ -1,0 +1,18 @@
+create table post (
+    id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(2048),
+    body LONGTEXT,
+    author_id INT,
+    created_at INT,
+    PRIMARY KEY ( id )
+);
+
+
+create table comment (
+    id INT NOT NULL AUTO_INCREMENT,
+    author_id INT,
+    body LONGTEXT,
+    created_at INT,
+    post_id INT,
+    PRIMARY KEY ( id )
+);
