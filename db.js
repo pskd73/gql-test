@@ -5,11 +5,12 @@ const connection = mysql.createConnection({
     password: "rgGdkHLvx0gHFgWH",
     database: "gql_test"
 });
-connection.connect();
 
 const runQuery = async (query, callback) => {
     return new Promise((resolve, reject) => {
+        connection.connect();
         connection.query(query, (error, results, fields) => {
+            connection.end();
             if (error) {
                 return reject(error);
             }
