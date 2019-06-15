@@ -1,16 +1,21 @@
 const mysql = require("mysql");
-const connection = mysql.createConnection({
+
+const config  = {
     host: "localhost",
     user: "debian-sys-maint",
     password: "rgGdkHLvx0gHFgWH",
     database: "gql_test"
-});
+}
+
+const getConnection = () => {
+    return mysql.createConnection(config);
+}
+
+connection = getConnection();
 
 const runQuery = async (query, callback) => {
     return new Promise((resolve, reject) => {
-        connection.connect();
         connection.query(query, (error, results, fields) => {
-            connection.end();
             if (error) {
                 return reject(error);
             }
@@ -18,6 +23,8 @@ const runQuery = async (query, callback) => {
         });
    });
 }
+
+
 
 module.exports = {
     runQuery

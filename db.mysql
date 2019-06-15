@@ -2,17 +2,17 @@ create table post (
     id BIGINT NOT NULL AUTO_INCREMENT,
     title VARCHAR(2048),
     body LONGTEXT,
-    author_id BIGINT,
-    created_at BIGINT,
+    authorId BIGINT,
+    createdAt BIGINT,
     PRIMARY KEY ( id )
 );
 
 
 create table comment (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    author_id BIGINT,
+    authorId BIGINT,
     body LONGTEXT,
-    created_at BIGINT,
-    post_id BIGINT,
+    createdAt BIGINT,
+    postId BIGINT,
     PRIMARY KEY ( id )
 );

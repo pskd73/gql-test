@@ -5,7 +5,7 @@ const getAllComments = async () => {
 }
 
 const getComment = async (id) => {
-    return await runQuery(`select * from comment where id = ${id}`)
+    return (await runQuery(`select * from comment where id = ${id}`))[0];
 }
 
 const updateComment = async (id, field, value) => {
@@ -18,7 +18,22 @@ const deleteComment = async (id) => {
 
 const createComment = async (comment) => {
     return await runQuery(`
-        insert into comment (author_id, body, post_id, created_at)
+        insert into comment (authorId, body, postId, createdAt)
         values (${comment.authorId}, "${comment.body}", ${comment.postId}, ${new Date().getTime()})
-    `)
+    `);
+}
+
+const getCommentsByPostId = async (postId) => {
+    return await runQuery(
+        `select * from comment where postId = ${postId}`
+    );
+}
+
+module.exports = {
+    getAllComments,
+    getComment,
+    updateComment,
+    deleteComment,
+    createComment,
+    getCommentsByPostId
 }

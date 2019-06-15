@@ -5,7 +5,7 @@ const getAllPosts = async () => {
 }
 
 const getPost = async (id) => {
-    return await runQuery(`select * from post where id = ${id}`)
+    return (await runQuery(`select * from post where id = ${id}`))[0];
 }
 
 const updatePost = async (id, field, value) => {
@@ -18,7 +18,15 @@ const deletePost = async (id) => {
 
 const createPost = async (post) => {
     return await runQuery(`
-        insert into post (title, body, author_id, created_at)
+        insert into post (title, body, authorId, createdAt)
         values ("${post.title}", "${post.body}", ${post.authorId}, ${new Date().getTime()})
-    `)
+    `);
+}
+
+module.exports = {
+    getAllPosts,
+    getPost,
+    updatePost,
+    deletePost,
+    createPost
 }

@@ -1,0 +1,25 @@
+{
+  posts {
+    id, title, authorId, comments {
+      id
+    }
+  }
+}
+
+query GetPost($id: Int) {
+  post(id: $id) {
+    id, title, comments {
+      id, body
+    }
+  }
+}
+
+mutation {
+  commentOnPost(
+    body: "This is comment",
+    postId: 1
+  ) {
+    code
+  }
+}
+
